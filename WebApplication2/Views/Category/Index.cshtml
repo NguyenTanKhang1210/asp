@@ -1,0 +1,71 @@
+﻿@model List<WebApplication2.Context.Category>
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+
+        <nav class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+
+                    <div class="card card-category">
+                        <div class="img-wrap" style="background: #ffd7d7">
+                            <img src="~/Content/images/Category/@item.Avartar">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                @Html.ActionLink(@item.Name, "Listing", "Large", new { @Id = item.Id }, null)
+
+                            </h4>
+                            <ul class="list-menu">
+                                <li><a href=""> @Html.ActionLink(@item.Slug, "Listing", "Large", new { @Id = item.Id }, null)</a></li>
+                                <li><a href="">@Html.ActionLink(@item.Slug, "Listing", "Large", new { @Id = item.Id }, null)</a></li>
+                                <li><a href="">@Html.ActionLink(@item.Slug, "Listing", "Large", new { @Id = item.Id }, null)</a></li>
+                                <li><a href="">@Html.ActionLink(@item.Slug, "Listing", "Large", new { @Id = item.Id }, null)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> <!-- col.// -->
+
+            }
+
+        </nav> <!-- row.// -->
+
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+<!-- ========================= SECTION SUBSCRIBE  ========================= -->
+<section class="padding-y-lg bg-light border-top">
+    <div class="container">
+
+        <p class="pb-2 text-center">Cung cấp các xu hướng sản phẩm mới nhất và tin tức ngành trực tiếp vào hộp thư đến của bạn</p>
+
+        <div class="row justify-content-md-center">
+            <div class="col-lg-4 col-sm-6">
+                <form class="form-row">
+                    <div class="col-8">
+                        <input class="form-control" placeholder="Email của bạn" type="email">
+                    </div> <!-- col.// -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Đăng Ký </button>
+                    </div> <!-- col.// -->
+                </form>
+                <small class="form-text">
+                    Chúng tôi sẽ không bao giờ chia sẻ địa chỉ email của bạn với bên thứ ba.
+                </small>
+            </div> <!-- col-md-6.// -->
+        </div>
+
+
+    </div>
+</section>
+<!-- ========================= SECTION SUBSCRIBE END// ========================= -->

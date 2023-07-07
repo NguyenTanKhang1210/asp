@@ -1,0 +1,45 @@
+﻿@using WebApplication2.Context
+@using WebApplication2.Models
+@{
+    ViewBag.Title = "Search";
+
+    string key = Request.QueryString["key"];
+    List<Product> result = new List<Product>();
+}
+
+
+@{ if (string.IsNullOrEmpty(key))
+    {
+        <h3>Vui lòng nhập từ khoá để tìm kiếm</h3>
+    }
+    else
+    {
+        if (key == "" || key.Length < 3)
+        {
+            <h3>Vui lòng nhập từ khoá để tìm kiếm</h3>
+        }
+        else
+        {
+            result = new Search().SearchByKey(key);
+            <div class="row row-sm p-5">
+                @foreach (var item in result)
+                {
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+                        <div href="@Url.Action("Detail","Product", new {id=item.Id})" class="card card-sm card-product-grid">
+                            <a href="@Url.Action("Detail","Product", new {id=item.Id})" class="img-wrap"> <img src="~/Content/images/items/@item.Avartar"> </a>
+                            <figcaption class="info-wrap">
+                                @*<a href="#" class="title">@item.Name</a>*@
+                                @Html.ActionLink(item.Name, "Detail", "Product", new { id = item.Id }, null)
+                                <div class="price mt-1">@String.Format("{0:N0}", @item.Price)</div> <!-- price-wrap.// -->
+                            </figcaption>
+                        </div>
+                    </div> <!-- col.// -->
+                }
+
+            </div>
+
+        }
+    }
+
+
+}

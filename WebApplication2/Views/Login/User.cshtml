@@ -1,0 +1,44 @@
+﻿@model WebApplication2.Context.User
+
+@{
+    ViewBag.Title = "User";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-conten padding-y" style="min-height:84vh">
+
+        <!-- ============================ COMPONENT LOGIN   ================================= -->
+        <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Đăng Nhập</h4>
+                <form>
+                    <a href="#" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Đăng nhập với Facebook</a>
+                    <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Đăng nhập với Google</a>
+                    <div class="form-group">
+                        <input name="Username" class="form-control" placeholder="Username" type="text">
+                    </div> <!-- form-group// -->
+                    <div class="form-group">
+                        <input name="Password" class="form-control" placeholder="Password" type="password">
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group">
+                        <a href="#" class="float-right">Quên Mật Khẩu</a>
+                        <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> Ghi nhớ </div> </label>
+                    </div> <!-- form-group form-check .// -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Đăng Nhập  </button>
+                    </div> <!-- form-group// -->
+                </form>
+            </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+
+        <p class="text-center mt-4">Bạn chưa có tài khoản <a href="@Url.Action("User","Register")">Đăng Ký</a></p>
+        <br><br>
+        <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+}

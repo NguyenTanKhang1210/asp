@@ -1,0 +1,233 @@
+﻿
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>APPLE</title>
+
+    <link href="~/Content/images/Simple-Apple-Logo-4K-Wallpaper-1136x640.png" rel="shortcut icon" type="image/x-icon">
+
+    <!-- jQuery -->
+    <script src="~/Scripts/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+    <!-- Bootstrap4 files-->
+    <script src="~/Scripts/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/ui.css" rel="stylesheet" />
+
+    <!-- Font awesome 5 -->
+    <link href="~/fonts/fontawesome/css/all.css" rel="stylesheet" />
+
+    <!-- custom style -->
+    <link href="~/Content/css/ui.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- custom javascript -->
+    <script src="~/Scripts/js/script.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/script.js"></script>
+</head>
+<body>
+
+    <header class="section-header">
+        <section class="header-main border-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-3 col-md-12">
+                        <a href="@Url.Action("Index", "Home")" class="brand-wrap">
+                            <img src="~/Content/images/Simple-Apple-Logo-4K-Wallpaper-1136x640.png" width="224" height="48" />
+                        </a> <!-- brand-wrap.// -->
+                    </div>
+                    <div class="col-xl-6 col-lg-5 col-md-6">
+                        <form action="@Url.Action("Search","Home")" class="search-header" name="timkiem">
+                            <div class="input-group w-90">
+                                @*<input type="text" name="search" class="form-control" />
+                    <input type="submit" name="submit" value="tìm kiếm" class="form-control"/>*@
+
+                                <select class="custom-select border-right" name="category_name">
+                                    <option value="">Tất cả các loại</option>
+                                    <option value="codex">Đặc biệt</option>
+                                    <option value="comments">Chỉ tốt nhất</option>
+                                    <option value="content">Muộn nhất</option>
+                                </select>
+                                <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm" name="key">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i> Tìm kiếm
+                                    </button>
+                                </div>
+                            </div>
+                        </form> <!-- search-wrap .end// -->
+                    </div> <!-- col.// -->
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="widgets-wrap float-md-right">
+                            <div class="widget-header mr-3">
+                                <a href="" class="widget-view">
+                                    <div class="icon-area">
+
+                                        <i class="fa fa-user"></i>
+
+                                    </div>
+                                    @if (Session["idUser"] != null)
+                                    {
+                                        <a href="~/Admin/Home/Index">Trang Admin|||</a>
+                                        <a href="~/Login/Logout">Đăng Xuất</a>
+                                        /**/
+                                    }
+                                    else
+                                    {
+                                        <a href="~/Login/User">Đăng Nhập</a>
+                                    }
+
+                                    @*<small class="text"> </small>*@
+                                </a>
+                            </div>
+
+                            <div class="widget-header mr-3">
+
+                                <a href="" class="widget-view">
+                                    <div class="icon-area">
+                                        <i class="fa fa-user"></i>
+
+                                    </div>
+                                    <small class="text">@Html.ActionLink("Đăng Ký", "User", "Register", new { }, null) </small>
+
+                                </a>
+                            </div>
+
+
+
+                            <div class="widget-header mr-3">
+                                <a href="" class="widget-view">
+                                    <div class="icon-area">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="notify" id="CartCount">@Session["count"]</span>
+                                    </div>
+                                    <small class="text"> @Html.ActionLink("Giỏ Hàng", "Shopping", "Cart", new { }, null) </small>
+                                </a>
+                            </div>
+
+                        </div> <!-- widgets-wrap.// -->
+                    </div> <!-- col.// -->
+                </div> <!-- row.// -->
+            </div> <!-- container.// -->
+        </section> <!-- header-main .// -->
+
+
+        <nav class="navbar navbar-main navbar-expand-lg border-bottom">
+            <div class="container">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="main_nav">
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-bars text-muted mr-2"></i> Danh mục </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Điện thoại</a>
+                                <a class="dropdown-item" href="#">Máy tính</a>
+                                <a class="dropdown-item" href="#">Máy tính bảng</a>
+                                <a class="dropdown-item" href="#">Phụ kiện</a>
+                                <a class="dropdown-item" href="#">Đồng hồ thông minh</a>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="navbar-nav ml-md-auto">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://example.com" data-toggle="dropdown">Tiếng Việt</a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Tiếng Anh</a>
+                                <a class="dropdown-item" href="#">Tiếng Pháp</a>
+                                <a class="dropdown-item" href="#">Tiếng Tây Ban Nha</a>
+                                <a class="dropdown-item" href="#">Tiếng Trung Quốc</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div> <!-- collapse .// -->
+            </div> <!-- container .// -->
+        </nav>
+    </header> <!-- section-header.// -->
+
+    @RenderBody()
+
+
+    <footer class="section-footer bg-secondary">
+        <div class="container">
+            <section class="footer-top padding-y-lg text-white">
+                <div class="row">
+                    <aside class="col-md col-6">
+                        <h6 class="title">Hãng</h6>
+                        <ul class="list-unstyled">
+                            <li> <a href="#">Adidas</a></li>
+                            <li> <a href="#">Puma</a></li>
+                            <li> <a href="#">Reebok</a></li>
+                            <li> <a href="#">Nike</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-md col-6">
+                        <h6 class="title">Công Ty</h6>
+                        <ul class="list-unstyled">
+                            <li> <a href="#">Về chúng tôi</a></li>
+                            <li> <a href="#">Nghề nghiệp</a></li>
+                            <li> <a href="#">Tìm cửa hàng</a></li>
+                            <li> <a href="#">Quy tác và điều khoản</a></li>
+                            <li> <a href="#">Sơ đồ trang web</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-md col-6">
+                        <h6 class="title">Trợ Giúp</h6>
+                        <ul class="list-unstyled">
+                            <li> <a href="#">Liên hệ với chúng tôi</a></li>
+                            <li> <a href="#">Hòan tiền</a></li>
+                            <li> <a href="#">Trạng thái đơn hàng</a></li>
+                            <li> <a href="#">Thông tin vận chuyển</a></li>
+
+                        </ul>
+                    </aside>
+                    <aside class="col-md col-6">
+                        <h6 class="title">Tài Khoản</h6>
+                        <ul class="list-unstyled">
+                            <li> <a href="#"> Đăng Nhập người dùng </a></li>
+                            <li> <a href="#"> Đăng Ký người dùng </a></li>
+                            <li> <a href="#"> Cài đặt tài khoản </a></li>
+                            <li> <a href="#"> Đơn đặt hàng của tôi </a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-md">
+                        <h6 class="title">Mạng Xã Hội</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
+                            <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
+                            <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
+                            <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+                        </ul>
+                    </aside>
+                </div> <!-- row.// -->
+            </section>	<!-- footer-top.// -->
+
+            <section class="footer-bottom text-center">
+
+                <p class="text-white">Chính sách bảo mật - Điều khoản sử dụng - Hướng dẫn điều tra pháp lý thông tin người dùng</p>
+                <p class="text-muted"> &copy  2019 Tên công ty, Mọi quyền được bảo lưu. </p>
+                <br>
+            </section>
+        </div><!-- //container -->
+    </footer>
+    <!-- ========================= FOOTER END // ========================= -->
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,180 @@
+﻿@model WebApplication2.Context.Product
+
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.Id;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+
+<section class="py-3 bg-light">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Nhà</a></li>
+            <li class="breadcrumb-item"><a href="#">Tên doanh mục</a></li>
+           
+            <li class="breadcrumb-item active" aria-current="page">Chi tiết</li>
+        </ol>
+    </div>
+</section>
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content bg-white padding-y">
+    <div class="container">
+
+        <!-- ============================ ITEM DETAIL ======================== -->
+        <div class="row">
+            <aside class="col-md-6">
+                <div class="card">
+                    <article class="gallery-wrap">
+                        <div class="img-big-wrap">
+                            <div> <a href="#"><img src="~/Content/images/items/@Model.Avartar"></a></div>
+                        </div> <!-- slider-product.// -->
+                        <div class="thumbs-wrap">
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avartar"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avartar"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avartar"></a>
+                            <a href="#" class="item-thumb"> <img src="~/Content/images/items/@Model.Avartar"></a>
+                        </div> <!-- slider-nav.// -->
+                    </article> <!-- gallery-wrap .end// -->
+                </div> <!-- card.// -->
+            </aside>
+            <main class="col-md-6">
+                <article class="product-info-aside">
+
+                    <h2 class="title mt-3">@Model.Name </h2>
+
+                    <div class="rating-wrap my-3">
+                        <ul class="rating-stars">
+                            <li style="width:80%" class="stars-active">
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </li>
+                        </ul>
+                        <small class="label-rating text-muted">132 đánh giá</small>
+                        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 mua hàng </small>
+                    </div> <!-- rating-wrap.// -->
+
+                    <div class="mb-3">
+                        <var class="price h4">@Model.Price</var>
+                        <span class="text-muted">VNĐ</span>
+                    </div> <!-- price-detail-wrap .// -->
+
+                    <p>
+                        @Model.ShortDes
+                    </p>
+
+
+                    <dl class="row">
+                        <dt class="col-sm-3">Nhà sản xuất</dt>
+                        <dd class="col-sm-9"><a href="#">Apple</a></dd>
+
+                        <dt class="col-sm-3">Số bài viết</dt>
+                        <dd class="col-sm-9">596 065</dd>
+
+                        <dt class="col-sm-3">Bảo hành</dt>
+                        <dd class="col-sm-9">2 năm</dd>
+
+                        <dt class="col-sm-3">Thời gian giao hàng</dt>
+                        <dd class="col-sm-9">3-4 ngày</dd>
+
+                        <dt class="col-sm-3">Sẵn có</dt>
+                        <dd class="col-sm-9">Còn hàng</dd>
+                    </dl>
+
+                    <div class="form-row  mt-4">
+                        <div class="form-group col-md flex-grow-0">
+                            <div class="input-group mb-3 input-spinner">
+                                <input type="text" id="ipQuantity" class="form-control" value="1">
+                            </div>
+                        </div> <!-- col.// -->
+                        <div class="form-group col-md">
+                            <a href="#" id="addtocart" class="btn  btn-primary">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="text" h>Thêm vào giỏ hàng</span>
+                            </a>
+                        </div> <!-- col.// -->
+                    </div> <!-- row.// -->
+
+                </article> <!-- product-info-aside .// -->
+            </main> <!-- col.// -->
+        </div> <!-- row.// -->
+        <!-- ================ ITEM DETAIL END .// ================= -->
+
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y bg">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8">
+                <h5 class="title-description">Mô tả</h5>
+                @Model.FullDescription
+            </div> <!-- col.// -->
+
+        </div> <!-- row.// -->
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+<!-- ========================= SECTION SUBSCRIBE  ========================= -->
+<section class="padding-y-lg bg-light border-top">
+    <div class="container">
+
+        <p class="pb-2 text-center">Cung cấp các xu hướng sản phẩm mới nhất và tin tức ngành trực tiếp vào hộp thư đến của bạn</p>
+
+        <div class="row justify-content-md-center">
+            <div class="col-lg-4 col-sm-6">
+                <form class="form-row">
+                    <div class="col-8">
+                        <input class="form-control" placeholder="Email của bạn" type="email">
+                    </div> <!-- col.// -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Đăng Ký </button>
+                    </div> <!-- col.// -->
+                </form>
+                <small class="form-text">Chúng tôi sẽ không bao giờ chia sẻ địa chỉ email của bạn với bên thứ ba. </small>
+            </div> <!-- col-md-6.// -->
+        </div>
+
+
+    </div>
+</section>
+<!-- ========================= SECTION SUBSCRIBE END// ========================= -->

@@ -1,0 +1,256 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<WebApplication2.Context.Brand>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="content-wrapper">
+    <style>
+        <style >
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .pagination > li {
+            display: inline;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                margin-left: -1px;
+                line-height: 1 .428571429;
+                text-decoration: none;
+                background-color: #ffffff;
+                border: 1px solid #dddddd;
+            }
+
+            .pagination > li:first-child > a,
+            .pagination > li:first-child > span {
+                margin-left: 0;
+                border-bottom-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+
+            .pagination > li > a:hover,
+            .pagination > li > span:hover,
+            .pagination > li > a:focus {
+                background-color: #eeeeee;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span.hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #eeeeee;
+            cursor: default;
+            background-color: #429bca;
+            border-color: #429bca;
+        }
+
+        .pagination > .disabled > span,
+        .pagination > .disabled > a,
+        .pagination > .disabled > a:hover,
+        .pagination > .disabled > a:focus {
+            color: #999999;
+            cursor: not-allowed;
+            background-color: #ffffff;
+            border-color: #dddddd;
+        }
+
+        .pagination-lg > li > a,
+        .pagination-lg > li > span {
+            padding: 10px 16px;
+            font-size: 18px;
+        }
+
+        .pagination-lg > li:first-child > a,
+        .pagination-lg > li:first-child > span {
+            border-bottom-left-radius: 6px;
+            border-top-left-radius: 6px;
+        }
+
+        .pagination-lg > li:last-child > a,
+        .pagination-lg > li:last-child > span {
+            border-bottom-right-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .pagination-sm > li:first-child > a,
+        .pagination-sm > li:first-child > span {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .pagination-sm > li:first-child > a, .pagination-sm > li:first-child > span {
+            border-bottom-left-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        .pagination-lg > li:last-child > a,
+        .pagination-lg > li:last-child > span {
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .pager {
+            padding-left: 0;
+            margin: 20px 0;
+            text-align: center;
+            list-style: none;
+        }
+
+            .pager:before,
+            .pager.after {
+                display: table;
+                content: "";
+            }
+
+            .pager.after {
+                clear: both;
+            }
+
+            .pager:before,
+            .pager.after {
+                display: table;
+                content: "";
+            }
+
+            .pager.after {
+                clear: both;
+            }
+
+            .pager li {
+                display: inline;
+            }
+
+                .pager li > a,
+                .pager li > a > span {
+                    display: inline-block;
+                    padding: 5px 14px;
+                    background-color: #ffffff;
+                    border: 1px solid #dddddd;
+                    border-radius: 15px;
+                }
+
+                    .pager li > a:hover,
+                    .pager li > a:focus {
+                        text-decoration: none;
+                        background-color: #eeeeee;
+                    }
+
+            .pager.next > a,
+            .pager.next > span {
+                float: right;
+            }
+
+            .pager.previous > a,
+            .pager.previous > span {
+                float: left;
+            }
+
+            .pager.disabled > a,
+            .pager.disabled > a:hover
+            .pager.disabled > a:focus
+            .pager.disabled > span {
+                color: #999999;
+                cursor: not-allowed;
+                background-color: #ffffff;
+            }
+    </style>
+
+    <h2>QUẢN LÝ THƯƠNG HIỆU</h2>
+
+    <p>
+        @Html.ActionLink("Tạo mới", "Create")
+    </p>
+
+
+    @using (Html.BeginForm("Index", "Brand", FormMethod.Get))
+    {
+        <p>
+            Tìm tên sản phẩm: @Html.TextBox("SearchString", ViewBag.CurrenFilter as string)
+            <input type="submit" value="Tìm kiếm" />
+        </p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Avartar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().ShowOnHomePage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().DisplayOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedOnUtc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UpdatedOnUtc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Deleted)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img src="~/Content/images/Brand/@Html.DisplayFor(modelItem => item.Avartar)" style="width:100px;height:100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShowOnHomePage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedOnUtc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deleted)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","Brand",new { id = item.Id })" class="btn btn-ms btn-primary "> <i class="fas fa-edit text-white"></i> Chỉnh sửa</a>
+                    <a href="@Url.Action("Details","Brand",new { id = item.Id })" class="btn btn-ms btn-primary "> <i class="fas fa-eye text-white"></i>Chi tiết</a>
+                    <a href="@Url.Action("Delete","Brand",new { id = item.Id })" class="btn btn-ms btn-primary "> <i class="fas fa-trash-alt text-white">Xóa</i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>

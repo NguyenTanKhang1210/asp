@@ -1,0 +1,209 @@
+﻿@model List<WebApplication2.Context.Product>
+@{
+    ViewBag.Title = "Listing";
+}
+
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y">
+        <div class="container">
+
+
+            <!-- ============================  FILTER TOP  ================================= -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <ol class="breadcrumb float-left">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tên doanh mục</a></li>
+                        <li class="breadcrumb-item active">Chi tiết mặt hàng</li>
+                    </ol>
+                </div> <!-- card-body .// -->
+            </div> <!-- card.// -->
+            <!-- ============================ FILTER TOP END.// ================================= -->
+
+
+            <div class="row">
+                <aside class="col-md-2">
+
+                    <article class="filter-group">
+                        <h6 class="title">
+                            <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2"> Thương hiệu </a>
+                        </h6>
+                        <div class="filter-content collapse show" id="collapse_2">
+                            <div class="inner">
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" checked="" class="custom-control-input">
+                                    <div class="custom-control-label">
+                                        Apple
+                                        <b class="badge badge-pill badge-light float-right">120</b>
+                                    </div>
+                                </label>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" checked="" class="custom-control-input">
+                                    <div class="custom-control-label">
+                                        Samsung
+                                        <b class="badge badge-pill badge-light float-right">15</b>
+                                    </div>
+                                </label>
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" checked="" class="custom-control-input">
+                                    <div class="custom-control-label">
+                                       Xiaomi
+                                        <b class="badge badge-pill badge-light float-right">35</b>
+                                    </div>
+                                </label>
+                              
+                            </div> <!-- inner.// -->
+                        </div>
+                    </article> <!-- filter-group .// -->
+                    <article class="filter-group">
+                        <h6 class="title">
+                            <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3"> Phạm vi Giá </a>
+                        </h6>
+                        <div class="filter-content collapse show" id="collapse_3">
+                            <div class="inner">
+                                <input type="range" class="custom-range" min="0" max="100" name="">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Nhỏ nhất</label>
+                                        <input class="form-control" placeholder="0VNĐ" type="number">
+                                    </div>
+                                    <div class="form-group text-right col-md-6">
+                                        <label>Lớn nhất</label>
+                                        <input class="form-control" placeholder="9999999VNĐ" type="number">
+                                    </div>
+                                </div> <!-- form-row.// -->
+                                <button class="btn btn-block btn-primary">Apply</button>
+                            </div> <!-- inner.// -->
+                        </div>
+                    </article> <!-- filter-group .// -->
+
+                </aside> <!-- col.// -->
+                <main class="col-md-10">
+
+
+                    @foreach (var item in Model)
+                    {
+                        <article class="card card-product-list">
+                            <div class="row no-gutters">
+                                <aside class="col-md-3">
+                                    <a href="#" class="img-wrap">
+                                        <span class="badge badge-danger"> NEW </span>
+                                        <img src="~/Content/images/items/@item.Avartar">
+                                    </a>
+                                </aside> <!-- col.// -->
+                                <div class="col-md-6">
+                                    <div class="info-main">
+                                        <a href="@Url.Action("Detail", "Product", new {@Id = item.Id})" class="h5 title">@item.Name</a>
+                                        <div class="rating-wrap mb-2">
+                                            <ul class="rating-stars">
+                                                <li style="width:100%" class="stars-active">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            </ul>
+                                            <div class="label-rating">9/10</div>
+                                        </div> <!-- rating-wrap.// -->
+
+                                        <p class="mb-3">
+                                            <span class="tag"> <i class="fa fa-check"></i> Xác minh</span>
+                                            <span class="tag"> 5 năm </span>
+                                            <span class="tag"> 80 đánh giá </span>
+                                            <span class="tag"> Mỹ </span>
+                                        </p>
+
+                                    </div> <!-- info-main.// -->
+                                </div> <!-- col.// -->
+                                <aside class="col-sm-3">
+                                    <div class="info-aside">
+                                        <div class="price-wrap">
+                                            <span class="h5 price">@item.Price</span>
+                                            <small class="text-muted">/mỗi mặt hàng</small>
+                                        </div> <!-- price-wrap.// -->
+                                        <small class="text-warning">Phí vận chuyển trả phí</small>
+
+                                        <p class="mt-3">
+                                            <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Liên hệ với nhà cung cấp </a>
+                                            <a href="#" class="btn btn-light"><i class="fa fa-heart"></i> Lưu </a>
+                                        </p>
+
+                                        <label class="custom-control mt-3 custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input">
+                                            <div class="custom-control-label">
+                                                Thêm vào để so sánh
+                                            </div>
+                                        </label>
+
+                                    </div> <!-- info-aside.// -->
+                                </aside> <!-- col.// -->
+                            </div> <!-- row.// -->
+                        </article> <!-- card-product .// -->
+
+
+
+
+
+                    }
+
+
+
+
+
+                    <nav class="mb-4" aria-label="Page navigation sample">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+                        </ul>
+                    </nav>
+
+
+                    <div class="box text-center">
+                        <p>Bạn đã tìm thấy những gì bạn đang tìm kiếm?</p>
+                        <a href="" class="btn btn-light">Đúng</a>
+                        <a href="" class="btn btn-light">Không</a>
+                    </div>
+
+
+                </main> <!-- col.// -->
+
+            </div>
+
+        </div> <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+    <!-- ========================= SECTION SUBSCRIBE  ========================= -->
+    <section class="padding-y-lg bg-light border-top">
+        <div class="container">
+
+            <p class="pb-2 text-center">Cung cấp các xu hướng sản phẩm mới nhất và tin tức ngành trực tiếp vào hộp thư đến của bạn</p>
+
+            <div class="row justify-content-md-center">
+                <div class="col-lg-4 col-sm-6">
+                    <form class="form-row">
+                        <div class="col-8">
+                            <input class="form-control" placeholder="Email của bạn" type="email">
+                        </div> <!-- col.// -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Đăng Ký </button>
+                        </div> <!-- col.// -->
+                    </form>
+                    <small class="form-text">Chúng tôi sẽ không bao giờ chia sẻ địa chỉ email của bạn với bên thứ ba. </small>
+                </div> <!-- col-md-6.// -->
+            </div>
+
+
+        </div>
+    </section>
+    <!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+    
+

@@ -1,0 +1,83 @@
+﻿@model WebApplication2.Context.Brand
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="content-wrapper">
+    <h2>Chi tiết</h2>
+
+    <div>
+        <h4>Thương hiệu</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                <img width="100" height="100" src="~/Content/images/Brand/@Model.Avartar">
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Avartar)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Slug)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Slug)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ShowOnHomePage)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ShowOnHomePage)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DisplayOrder)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DisplayOrder)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedOnUtc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedOnUtc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedOnUtc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedOnUtc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Deleted)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Quay lại thương hiệu", "Index")
+    </p>
+</div>
